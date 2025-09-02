@@ -1,10 +1,16 @@
-name: Hello Actions
+name: Hello Workflow
 
-on: [push]
+on: 
+  push:     # triggers when code is pushed to repo
+    branches:
+      - main
 
 jobs:
-  hello:
-    runs-on: ubuntu-latest
+  say-hello:
+    runs-on: ubuntu-latest   # GitHub provides a Linux runner VM
     steps:
-      - name: Print a message
-        run: echo "Hello, GitHub Actions!"
+      - name: Checkout repo
+        uses: actions/checkout@v3   # pulls your repo code into the runner
+
+      - name: Say Hello
+        run: echo "Hello GitHub Actions!"
